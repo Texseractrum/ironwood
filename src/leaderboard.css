@@ -1,0 +1,51 @@
+dialog.leaderboard-dialog{width:640px;overscroll-behavior:contain}
+.leaderboard-dialog .dialog-close{width:40px;height:40px;right:10px;top:10px}
+#leaderboard-description{color:#53644b;max-width:440px}
+.leaderboard-membership{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 12px;padding:15px 16px;border-radius:8px;background:#dfe5d580}
+.leaderboard-membership p{color:#43563d;font-size:12px;line-height:1.6}
+.leaderboard-membership strong{display:block;font-size:15px;color:#293d31;margin-bottom:3px}
+.leaderboard-membership .button{flex-shrink:0;min-height:44px}
+.leaderboard-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0}
+.leaderboard-toolbar p{font-size:11px;color:#53644b}
+.leaderboard-toolbar .button{flex-shrink:0}
+.leaderboard-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12px;font-variant-numeric:tabular-nums}
+.leaderboard-table thead th{text-align:left;padding:10px 8px;font-size:10px;font-weight:500;letter-spacing:.3px;color:#53644b;border-bottom:1px solid #aeb69955}
+.leaderboard-table thead th:first-child{width:52px}
+.leaderboard-table thead th:last-child{width:106px;text-align:right}
+.leaderboard-table tbody td,.leaderboard-table tbody th{padding:13px 8px;border-bottom:1px solid #aeb69938;vertical-align:middle;text-align:left}
+.leaderboard-table tbody th{min-width:0;font-weight:500}
+.leaderboard-table a{display:block;text-decoration:none;color:#293d31;border-radius:3px;min-height:44px}
+.leaderboard-table a:hover .profile-name{text-decoration:underline;text-underline-offset:3px}
+.leaderboard-table .profile-chip{display:flex;font-size:13px;max-width:100%}
+.leaderboard-table .profile-name{max-width:none}
+.leaderboard-table .profile-avatar{width:32px;height:32px}
+.leaderboard-handle,.leaderboard-clan{display:block;font-size:11px;line-height:1.6;color:#53644b;overflow-wrap:anywhere;padding-left:38px}
+.leaderboard-table .leaderboard-rank{color:#53644b;font-size:14px}
+.leaderboard-table .leaderboard-score{text-align:right;color:#293d31;font-weight:600;overflow-wrap:anywhere}
+.leaderboard-own{background:#dfe5d570}
+.leaderboard-table .leaderboard-first .leaderboard-rank{color:#846225;font-weight:600}
+.leaderboard-pagination{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;font-size:11px;color:#53644b}
+.leaderboard-dialog .leaderboard-rules{font-size:11px;color:#53644b;line-height:1.7;margin-top:18px}
+.leaderboard-dialog .leaderboard-empty{padding:26px 12px;text-align:center;color:#53644b;border-block:1px solid #aeb69955}
+.leaderboard-dialog [aria-disabled="true"]{opacity:.55;cursor:default}
+.leaderboard-dialog :focus-visible{outline:2px solid #344d3c;outline-offset:3px}
+.leaderboard-sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(prefers-reduced-motion:no-preference){.leaderboard-dialog .button:not([aria-disabled="true"]):not(:disabled):active{scale:.96}}
+@media(forced-colors:active){.leaderboard-dialog :focus-visible{outline-color:Highlight}.leaderboard-own{outline:1px solid Highlight}}
+@media(max-width:800px){.expedition-bar #crew-status,.expedition-bar #journey-count{display:none}.expedition-bar button{font-size:10px;min-height:32px}}
+@media(max-width:440px){
+  dialog.leaderboard-dialog{max-width:calc(100vw - 24px);padding:24px 14px}
+  .leaderboard-dialog .eyebrow{display:block;max-width:calc(100% - 34px);line-height:1.6}
+  .leaderboard-dialog h2{font-size:36px}
+  .leaderboard-membership{align-items:flex-start;flex-direction:column;gap:10px;padding:12px}
+  .leaderboard-table thead th:first-child{width:36px}
+  .leaderboard-table thead th:last-child{width:80px}
+  .leaderboard-table thead th,.leaderboard-table tbody td,.leaderboard-table tbody th{padding-inline:4px}
+  .leaderboard-table .profile-chip{font-size:12px;flex-wrap:wrap;gap:4px}
+  .leaderboard-table .profile-name{white-space:normal;overflow-wrap:anywhere;flex:1;min-width:0}
+  .leaderboard-table .profile-avatar{width:26px;height:26px}
+  .leaderboard-handle,.leaderboard-clan{padding-left:0}
+  .expedition-bar{gap:6px}
+  .expedition-bar button{gap:3px}
+  .expedition-bar svg{width:12px;height:12px}
+}

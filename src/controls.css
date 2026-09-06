@@ -1,0 +1,239 @@
+/* Shared control layout: the header owns its rows so supplies never sit under navigation. */
+#ui .topbar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px 24px;
+}
+#ui { --hud-edge: 28px; --expedition-rail-width: 172px; }
+#ui .inventory-hud { width: max-content; max-width: 100%; min-width: 0; }
+#ui .top-actions { margin: 0; gap: 8px; }
+#ui .top-actions .icon-button { width: 40px; height: 40px; border-radius: 8px; }
+#ui .topbar .expedition-bar {
+  position: fixed;
+  z-index: 6;
+  top: 50%;
+  right: var(--hud-edge);
+  left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  transform: translateY(-50%);
+  width: var(--expedition-rail-width);
+  max-width: calc(100vw - var(--hud-edge) - var(--hud-edge));
+  padding: 6px;
+  gap: 4px;
+  font-size: 11px;
+}
+#ui .expedition-bar button {
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 5px;
+  gap: 7px;
+}
+#ui .expedition-bar button > :is(kbd, span) { margin-left: auto; }
+#ui .expedition-bar .clan-launcher-label { margin-left: 0; }
+#ui .expedition-bar button:hover { background: #344d3c12; }
+#ui .expedition-bar #leaderboard { background: var(--green); color: #f3edd7; font-weight: 600; }
+#ui .expedition-bar #leaderboard:hover { background: #425647; }
+#ui .expedition-bar #leaderboard svg { color: var(--gold); width: 17px; height: 17px; }
+#ui .expedition-bar #leaderboard kbd { border-color: #d3b98166; }
+#ui .expedition-bar #clan-toggle[aria-expanded="true"] { background: #344d3c12; color: #293d31; }
+#ui .global-chat { top: 138px; right: calc(var(--hud-edge) + var(--expedition-rail-width) + 12px); width: min(288px, calc(100vw - var(--expedition-rail-width) - var(--hud-edge) - var(--hud-edge) - 12px)); z-index: 6; }
+#ui .global-chat { pointer-events: none; }
+#ui .global-chat :is(.chat-tab, .chat-panel) { pointer-events: auto; }
+#ui .controls .fps-counter { position: static; transform: none; flex-shrink: 0; padding: 4px 7px; font-size: 10px; }
+#ui .controls { min-width: 0; }
+#ui .controls > span:first-child { min-width: 0; }
+#ui .factory-status { background: var(--surface-panel); border-radius: 8px; padding: 12px; box-shadow: var(--shadow); }
+#ui .island-caption { top: 189px; }
+#ui .expedition-hint { top: 84px; left: 28px; right: auto; transform: none; max-width: min(440px, 40vw); }
+#ui .clan-panel { z-index: 7; }
+#ui .inspector { right: calc(var(--hud-edge) + var(--expedition-rail-width) + 12px); top: 222px; max-height: calc(100dvh - 440px); overscroll-behavior: contain; }
+#ui .inspector-top button { min-width: 32px; min-height: 32px; }
+#ui .chat-tab { min-height: 40px; }
+#ui .chat-panel header button { min-width: 36px; min-height: 36px; }
+#ui .chat-panel, #ui .mission { overscroll-behavior: contain; }
+#ui .mission > .eyebrow { gap: 6px; }
+#ui #chapter { margin-left: auto; font-size: 7px; letter-spacing: .4px; }
+#mission-toggle { display: grid; place-items: center; flex: 0 0 28px; width: 28px; height: 32px; border-radius: 4px; }
+#mission-toggle:hover { background: #344d3c12; }
+#mission-toggle svg { width: 15px; height: 15px; }
+#mission-toggle[aria-expanded="true"] svg { rotate: 180deg; }
+#ui .mission:has(#mission-details[hidden]) { padding-bottom: 18px; }
+#ui .mission h2 { margin-top: 10px; }
+#mission-copy { font-size: 11px; color: #627057; line-height: 1.7; margin-top: 12px; margin-bottom: 20px; }
+#ui .mission-foot button { width: 32px; height: 32px; }
+#ui .build-dock { --recipe-book-tab-height: 48px; }
+#ui .dock-head { min-height: 48px; height: 48px; gap: 12px; }
+#ui .categories { min-width: 0; gap: 14px; }
+#ui .categories button { min-height: 40px; font-size: 11px; }
+#ui .dock-tools { flex-shrink: 0; gap: 4px; }
+#ui .dock-tools button { height: 36px; width: 32px; }
+#ui .dock-tools > span { margin: 0 2px; }
+#ui #build-toggle[aria-pressed="true"] { background: #eff4d719; color: #eddfb3; }
+#ui #build-toggle[aria-pressed="true"] svg { rotate: 180deg; }
+#ui .build-dock.is-pinned, #ui .build-dock:focus-within { max-height: 240px; }
+#ui .build-items { scroll-padding-inline: 12px; overscroll-behavior-inline: contain; }
+#ui .build-card { flex-shrink: 0; }
+
+/* Every dialog shares a reachable close action, a name, and comfortable controls. */
+#dialog {
+  --dialog-padding: 28px;
+  padding: var(--dialog-padding);
+  max-height: calc(100dvh - 40px);
+  overscroll-behavior: contain;
+  scroll-padding-block: 56px 24px;
+}
+#dialog .dialog-toolbar { position: sticky; top: 12px; height: 0; z-index: 10; pointer-events: none; }
+#dialog .dialog-toolbar .dialog-close {
+  position: absolute;
+  right: -16px;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 7px;
+  background: var(--surface-dialog);
+  color: var(--ink);
+  pointer-events: auto;
+}
+#dialog .dialog-toolbar .dialog-close:hover { background: #dce2d1; }
+#dialog .dialog-toolbar .dialog-back {
+  position: absolute; left: -12px; top: 0; min-height: 40px;
+  padding: 0 12px; font-size: 12px; border-radius: 7px;
+  background: var(--surface-dialog); pointer-events: auto;
+}
+#dialog:has(.dialog-back) #dialog-content > .eyebrow { padding-top: 36px; }
+#dialog #dialog-content > .eyebrow, #dialog .settings-view > .eyebrow { padding-right: 32px; line-height: 1.6; }
+#dialog h2 { padding-right: 28px; }
+#dialog :is(button, a, input, select, summary, [tabindex]):focus-visible { outline: 2px solid #344d3c; outline-offset: 3px; }
+#dialog .button { min-height: 44px; font-size: 12px; }
+#dialog .settings-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#dialog .settings-list .button { padding: 10px 12px; }
+#dialog :is(input, select, textarea) { font-family: inherit; }
+#dialog .atlas-toolbar { flex-wrap: wrap; }
+#dialog .atlas-toolbar .button { flex: 1; }
+#dialog .atlas-sidebar { min-width: 0; }
+#dialog .atlas-sidebar > * { min-width: 0; }
+#dialog .craft-recipes > div { gap: 12px; }
+#dialog .craft-recipes section { min-width: 0; }
+#dialog .craft-recipes .button { flex-shrink: 0; }
+#dialog.intro-dialog .dialog-toolbar { top: 0; }
+#dialog.intro-dialog .dialog-toolbar .dialog-close { top: 10px; right: 10px; }
+
+/* Settings use one row system, with explanations next to the setting they affect. */
+#dialog.settings-dialog { width: 600px; }
+.settings-view { color: var(--ink); }
+#dialog .settings-view h2 { margin: 12px 0 8px; }
+#dialog .settings-intro { color: #58664f; font-size: 12px; }
+#dialog .settings-section { margin: 24px 0 0; padding: 18px; border: 0; border-radius: 10px; background: #dce2d14d; }
+#dialog .settings-section h3 { display: flex; align-items: center; gap: 9px; font-size: 14px; margin: 0 0 12px; }
+#dialog .settings-section h3 svg { width: 17px; height: 17px; color: #647158; }
+#dialog .setting-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; font-size: 13px; }
+#dialog .setting-row select { min-width: 164px; max-width: 65%; min-height: 44px; padding: 8px 12px; font: inherit; color: var(--ink); background: #f8f5eb; border: 1px solid #8b987e; border-radius: 6px; }
+#dialog .setting-help { font-size: 12px; color: #58664f; line-height: 1.65; margin: 8px 0 0; }
+#dialog .setting-help:empty { display: none; }
+#dialog .setting-toggle { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 52px; margin-top: 8px; font-size: 13px; cursor: pointer; }
+#dialog .setting-toggle span { min-width: 0; }
+#dialog .setting-toggle small { display: block; margin-top: 4px; color: #58664f; font-size: 11px; line-height: 1.5; }
+#dialog .setting-toggle input { accent-color: #344d3c; width: 20px; height: 20px; margin: 0; flex: 0 0 20px; cursor: pointer; }
+#dialog .setting-volume { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 4px 16px; margin-top: 14px; }
+#dialog .setting-volume label { min-height: 32px; font-size: 13px; }
+#dialog .setting-volume output { font-size: 12px; text-align: right; font-variant-numeric: tabular-nums; }
+#dialog .setting-volume input { width: 100%; min-width: 0; height: 44px; margin: 0; accent-color: #344d3c; cursor: pointer; }
+#dialog .setting-volume .button { padding-inline: 14px; }
+#dialog #settings-account { margin-top: 14px; }
+#dialog .settings-section .settings-list { margin: 12px 0 0; }
+#dialog #reset-hints { margin-top: 12px; }
+#dialog .settings-done { display: flex; margin: 20px 0 0 auto; min-width: 100px; }
+
+@media (max-width: 1100px) {
+  #ui { --hud-edge: 18px; --expedition-rail-width: 160px; }
+  #ui .topbar { gap: 12px 16px; }
+  #ui .expedition-hint { left: 18px; max-width: 34vw; }
+  #ui .categories { gap: 10px; }
+}
+@media (max-width: 800px) {
+  #ui { --expedition-rail-width: 116px; }
+  #ui .topbar { grid-template-columns: minmax(0, 1fr) auto; gap: 10px 12px; }
+  #ui .topbar .identity { min-width: 0; }
+  #ui .identity h1 { font-size: 24px; }
+  #ui .identity p { font-size: 6px; letter-spacing: 1.8px; }
+  #ui .brand-icon { display: none; }
+  #ui .inventory-hud { order: initial; grid-row: 2; grid-column: 1 / -1; width: 100%; margin: 0; }
+  #ui .inventory-hud .resources { max-width: 100%; }
+  #ui .inventory-items { flex: 1; }
+  #ui .topbar .expedition-bar { width: var(--expedition-rail-width); }
+  #ui .expedition-bar button { min-height: 42px; padding: 0 9px; gap: 5px; font-size: 11px; }
+  #ui .expedition-bar kbd, #ui #crew-status, #ui #journey-count { display: none; }
+  #ui .top-actions { gap: 6px; }
+  #ui .global-chat { top: 222px; right: var(--hud-edge); width: min(288px, calc(100vw - var(--hud-edge) - var(--hud-edge))); }
+  #ui .expedition-hint { top: 174px; left: 18px; max-width: calc(100vw - 130px); text-align: left; }
+  #ui .mission { top: 222px; max-height: calc(100dvh - 440px); }
+  #ui .inspector { top: 270px; max-height: calc(100dvh - 440px); z-index: 5; }
+  #ui .build-dock { --recipe-book-tab-height: 48px; }
+  #ui .dock-head { padding-inline: 10px; }
+  #ui .dock-foot > span:last-child { display: none; }
+  #ui .controls > span:first-child { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  #ui .controls #help { flex-shrink: 0; min-height: 24px; font-size: 10px; }
+}
+@media (max-width: 600px) {
+  #ui { --hud-edge: 12px; --expedition-rail-width: 108px; }
+  #ui .topbar, #ui .bottom-area { left: 12px; right: 12px; }
+  #ui .topbar { gap: 8px; }
+  #ui .top-actions .icon-button { width: 40px; height: 40px; }
+  #ui .global-chat { top: 174px; }
+  #ui .expedition-bar button { padding: 0 6px; gap: 4px; font-size: 10px; }
+  #ui .expedition-bar svg { width: 13px; height: 13px; }
+  #ui .expedition-bar #leaderboard svg { width: 15px; height: 15px; }
+  #ui .mission { left: 12px; top: 220px; width: min(220px, calc(100vw - 150px)); padding: 10px 12px 0; }
+  #ui .mission .eyebrow { font-size: 6px; gap: 3px; letter-spacing: .5px; flex-wrap: wrap; }
+  #ui #chapter { display: none; }
+  #ui #mission-toggle { margin-left: auto; }
+  #ui .mission h2 { font-size: 22px; }
+  #ui .mission:has(#mission-details:not([hidden])) { width: calc(100vw - 24px); z-index: 8; }
+  #ui .expedition-hint { left: 12px; }
+  #ui .inspector { right: calc(var(--hud-edge) + var(--expedition-rail-width) + 12px); }
+  #ui .build-dock { --recipe-book-tab-height: 88px; }
+  #ui .dock-head { height: 88px; flex-wrap: wrap; gap: 0; align-content: center; }
+  #ui .categories { width: 100%; height: 44px; justify-content: space-around; }
+  #ui .categories button { font-size: 11px; }
+  #ui .dock-tools { height: 40px; width: 100%; justify-content: flex-end; gap: 8px; }
+  #ui .dock-tools button { width: 40px; height: 36px; }
+  #ui #build-toggle { margin-right: auto; }
+  #ui .build-dock.is-pinned, #ui .build-dock:focus-within { max-height: 260px; }
+  #ui .build-dock:hover { max-height: 260px; }
+  #ui .combat-hud { bottom: 150px; }
+  #ui:has(.build-dock:is(:hover, :focus-within, .is-pinned)) .combat-hud { bottom: 278px; }
+  #ui .player-hint { left: var(--hud-edge); right: auto; bottom: 244px; transform: none; width: min(320px, calc(100vw - var(--expedition-rail-width) - var(--hud-edge) - var(--hud-edge) - 12px)); }
+  #ui .toast, #ui .build-hint { bottom: 288px; }
+  #dialog { --dialog-padding: 20px; max-width: calc(100vw - 24px); max-height: calc(100dvh - 24px); }
+  #dialog .dialog-toolbar .dialog-close { right: -12px; top: 0; }
+  #dialog .settings-section { padding: 14px; }
+  #dialog .setting-row { flex-wrap: wrap; gap: 8px; }
+  #dialog .setting-row select { min-width: 0; max-width: 100%; flex: 1; }
+  #dialog .settings-list { grid-template-columns: 1fr; }
+  #dialog .settings-section .settings-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #dialog .setting-volume { gap: 4px 10px; }
+  #dialog .setting-volume .button { padding-inline: 10px; font-size: 11px; }
+  #dialog .settings-section .settings-list .button { padding: 10px 8px; font-size: 11px; }
+  #dialog :is(select, input:not([type="checkbox"]):not([type="range"]), textarea) { font-size: 16px; }
+  #dialog .craft-icon { flex-shrink: 0; width: 30px; }
+  #dialog .craft-recipes > div { flex-wrap: wrap; }
+  #dialog .craft-recipes section { flex-basis: calc(100% - 44px); }
+  #dialog .craft-recipes [data-craft] { margin-left: 42px; }
+  #dialog .atlas-toolbar { gap: 6px; }
+  #dialog .atlas-toolbar .button { padding-inline: 8px; font-size: 11px; }
+  #dialog .map-zoom { gap: 4px; }
+  #dialog .map-zoom button { width: 36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #ui button:active, #dialog button:active { transform: none; scale: none; }
+}
+@media (forced-colors: active) {
+  #dialog :focus-visible { outline-color: Highlight; }
+  #ui .expedition-bar #leaderboard { border: 1px solid ButtonText; }
+}

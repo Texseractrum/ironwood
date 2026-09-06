@@ -1,0 +1,23 @@
+.player-hint{position:absolute;left:50%;bottom:222px;transform:translateX(-50%);width:340px;max-width:calc(100vw - 36px);padding:11px 34px 9px 13px;border-radius:8px;background:var(--surface-raised);color:#435344;box-shadow:var(--shadow-floating);font-size:12px;line-height:1.5;pointer-events:auto}
+.chat-input-label{display:block;padding:9px 10px 0;border-top:1px solid #5361461f;font-size:11px;font-weight:600;color:#425746}.chat-input-help{padding:0 10px 10px;font-size:11px;line-height:1.45;color:#53634a}.chat-form{border-top:0;padding-top:6px}.chat-form input{font-size:12px}.chat-panel{max-height:calc(100dvh - 110px);overflow:auto}.chat-messages{height:min(300px,calc(100dvh - 420px));min-height:100px}
+@media(max-width:800px){.chat-panel{max-height:calc(100dvh - 242px)}.chat-messages{height:min(210px,calc(100dvh - 510px));min-height:90px}.chat-form input{font-size:16px}}
+.player-hint-heading{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin-bottom:4px}.player-hint-heading strong{font-size:12px;font-weight:650}.player-hint-heading span{font-size:11px;color:#5c684e}.player-hint p{margin:0;color:#43513c;overflow-wrap:anywhere}.player-hint-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px;font-size:11px;color:#5c684e}.player-hint-footer button{font:inherit;color:inherit;min-height:24px;text-decoration:underline;text-underline-offset:3px;text-decoration-color:#5c684e55}.player-hint-dismiss{position:absolute;right:6px;top:6px;width:26px;height:26px;border-radius:4px;font-size:20px;line-height:1;color:#526149}.player-hint button:hover{background:#293d3110}.player-hint button:focus-visible{outline:2px solid #293d31;outline-offset:2px}
+#ui:has(#build-hint:not([hidden])) .player-hint{bottom:322px}
+.hint-settings{margin-top:20px}.hint-settings h3{font-size:14px}.hint-settings .button{margin-top:8px}.guide-controls{margin-top:24px}.guide-controls summary{cursor:pointer;font-size:14px;min-height:32px}.guide-controls dl{margin-top:12px}.guide-controls dt{font-size:12px;font-weight:650;margin-top:14px}.guide-controls dd{font-size:12px;line-height:1.6;color:#526149;margin:3px 0 0}
+@media(max-width:800px){.player-hint{bottom:194px;width:320px}#ui:has(#build-hint:not([hidden])) .player-hint{bottom:300px}}
+@media(max-height:700px){.player-hint{bottom:174px}#ui:has(#build-hint:not([hidden])) .player-hint{bottom:272px}}
+
+/* Keep contextual guidance beside the collapsed recipe book, clear of the world. */
+#ui .dock-hints{position:absolute;left:50%;bottom:106px;transform:translateX(-50%);width:min(440px,calc(100% - 36px));display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
+#ui .dock-hints > :is(.player-hint,.world-label,.build-hint,.toast){position:relative;inset:auto;transform:none;margin:0;max-width:100%;min-width:0;pointer-events:auto}
+#ui .dock-hints > :is(.world-label,.toast){background:var(--surface-raised);color:var(--ink);box-shadow:var(--shadow-floating);white-space:normal;overflow-wrap:anywhere;line-height:1.5;text-align:center}
+#ui .dock-hints:has(:is(.world-label,.build-hint):not([hidden])) > .player-hint,
+#ui .dock-hints:has(.toast:not([hidden])) > :is(.world-label,.build-hint,.player-hint),
+#ui:has(.build-dock:is(:hover,:focus-within,.is-pinned)) .dock-hints{display:none}
+@media(max-height:700px){#ui .dock-hints{bottom:95px}}
+@media(max-width:800px),(pointer:coarse){
+  #ui .dock-hints{left:var(--mobile-left);right:var(--mobile-right);bottom:calc(var(--mobile-bar-top) + 180px);width:auto;transform:none;align-items:flex-start}
+  #ui:is(.mobile-building,.mobile-menu-open) .dock-hints,
+  #ui:has(:is(#chat-panel,#inspector,.clan-panel,#mission-details):not([hidden])) .dock-hints{display:none}
+}
+@media(max-height:500px) and (orientation:landscape){#ui .dock-hints{left:50%;right:auto;transform:translateX(-50%);width:min(350px,48%);bottom:calc(var(--mobile-bar-top, 0px) + 64px)}}

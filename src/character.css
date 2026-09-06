@@ -1,0 +1,31 @@
+dialog:has(#character-form){width:820px;max-height:90dvh;padding:30px;overscroll-behavior:contain}
+.character-heading h2{margin:10px 0 6px}.character-heading>p{margin:0 0 22px}
+.character-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
+.character-preview{position:relative;display:flex;flex-direction:column;align-items:center;min-width:0;border-radius:8px;background:radial-gradient(ellipse at 50% 38%,#e1e4d5,#cdd4c0);box-shadow:inset 0 0 0 1px #3e53351a;overflow:hidden}
+.character-preview>.eyebrow{margin-top:22px;color:#4c5e43;font-size:9px;letter-spacing:2px}
+#character-preview{display:block;width:100%;height:300px;min-height:0}
+.character-turn{display:flex;align-items:center;gap:12px;padding:0 24px;width:100%;font-size:10px;color:#3d503a}
+.character-turn label{white-space:nowrap}.character-turn input{width:100%;min-width:50px;min-height:32px;accent-color:#405b43}
+.character-preview-note{margin:8px 0 20px;font:italic 19px 'Cormorant Garamond',Georgia,serif;color:#506344}
+.character-options{min-width:0;margin:0;padding:0;border:0}
+.character-options fieldset{padding:0;border:0;margin:0 0 16px;min-width:0}
+.character-options legend{font-size:11px;font-weight:600;margin-bottom:8px;width:100%}
+.character-options legend>span{float:right;font-size:10px;font-weight:400;color:#68715d}
+.character-swatches{display:flex;gap:7px;flex-wrap:wrap}
+.character-swatch{display:block;position:relative;width:40px;height:40px;cursor:pointer}
+.character-swatch>input,.character-headwear input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:pointer}
+.character-swatch>span{display:grid;place-items:center;width:100%;height:100%;border:3px solid var(--surface-dialog);border-radius:50%;background:var(--swatch);box-shadow:0 0 0 1px #39483238}
+.character-swatch>span>span{display:none;place-items:center;width:19px;height:19px;border-radius:50%;background:#23362deb;color:#fff;font-size:12px}
+.character-swatch input:checked+span{box-shadow:0 0 0 2px #3b543e}.character-swatch input:checked+span>span{display:grid}
+.character-swatch input:focus-visible+span,.character-headwear input:focus-visible+span{outline:2px solid #233d2b;outline-offset:4px}
+.character-headwear>div{display:flex;gap:6px}.character-headwear label{position:relative;flex:1;cursor:pointer}
+.character-headwear label>span{display:grid;place-items:center;min-height:40px;padding:8px 5px;border:1px solid #9da58d;border-radius:5px;text-align:center;font-size:10px;color:#3e4d39}
+.character-headwear input:checked+span{background:#344e3c;border-color:#344e3c;color:#fbf6e5}
+.character-goggles{display:flex;align-items:center;gap:10px;min-height:44px;font-size:11px;font-weight:600;cursor:pointer}
+.character-goggles input{width:17px;height:17px;accent-color:#344e3c}.character-goggles small{display:block;margin-top:5px;font-size:10px;font-weight:400;color:#68715d}
+.character-footer{border-top:1px solid var(--line);margin-top:22px;padding-top:12px}.character-footer>p{font-size:11px;margin:0 0 14px;color:#56634d;min-height:20px}
+.character-actions{display:flex;gap:9px;align-items:center}.character-actions>span{flex:1}.character-actions .button{min-height:40px;font-size:11px;padding:10px 14px}.character-reset{min-height:40px;padding:8px;color:#52614a;font-size:10px;text-decoration:underline;text-underline-offset:3px}
+#character-form button:focus-visible{outline-offset:3px}#character-form button:disabled{opacity:.55;cursor:wait}
+@media(prefers-reduced-motion:no-preference){#character-form button{transition:transform 120ms ease-out}#character-form button:active:not(:disabled){transform:scale(.96)}}
+@media(max-width:640px){dialog:has(#character-form){padding:22px;max-width:calc(100vw - 24px)}.character-layout{grid-template-columns:1fr;gap:22px}.character-preview{min-height:0}.character-preview>.eyebrow{margin-top:14px}#character-preview{height:210px}.character-preview-note{margin-bottom:12px}.character-heading h2{font-size:35px}.character-actions{flex-wrap:wrap}.character-actions>span{flex-basis:100%;height:0}.character-actions .button{flex:1}.character-swatch{width:44px;height:44px}}
+@media(forced-colors:active){.character-swatch input:checked+span,.character-headwear input:checked+span{outline:2px solid Highlight}.character-swatch input:focus-visible+span,.character-headwear input:focus-visible+span{outline:3px dashed Highlight}}

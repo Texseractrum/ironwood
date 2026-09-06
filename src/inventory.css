@@ -1,0 +1,162 @@
+/* One supplies strip, with discoveries appearing directly beneath it. */
+.topbar > .identity, .topbar > .top-actions { flex-shrink: 0; }
+.inventory-hud {
+  position: relative;
+  min-width: 0;
+  max-width: 740px;
+  margin-inline: auto;
+}
+.inventory-hud .resources {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
+  margin: 0;
+  padding: 4px 6px;
+  min-height: 42px;
+  border-radius: 8px;
+  background: var(--surface-panel);
+}
+.inventory-label {
+  display: grid;
+  place-items: center;
+  flex: 0 0 30px;
+  color: #778168;
+  border-right: 1px solid var(--line);
+  margin-right: 3px;
+}
+.inventory-label svg { width: 16px; height: 16px; }
+.inventory-items {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #8d96786b transparent;
+}
+.inventory-hud .resource,
+.inventory-hud .resource:not(:last-child),
+.inventory-hud .resource:last-child {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  min-width: 0;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 4px;
+  height: 32px;
+}
+.inventory-hud .resource > span { filter: brightness(.72); }
+.inventory-hud .resource svg { width: 16px; height: 16px; }
+.inventory-hud .resource small { font-size: 9px; color: #66705c; }
+.inventory-hud .resource b { font-size: 12px; line-height: 1; font-weight: 650; }
+.inventory-hud .resource.empty b { color: #88907b; }
+.inventory-hud .resource:focus-visible { outline: 2px solid #957843; outline-offset: -2px; }
+.inventory-hud .compact .resource small { display: none; }
+#inventory-craft {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 0 9px;
+  border-left: 1px solid var(--line);
+  margin-left: 4px;
+  color: #627054;
+}
+#inventory-craft:hover { background: #63785312; }
+#inventory-craft svg { width: 15px; height: 15px; }
+.expedition-bar {
+  top: 82px;
+  left: auto;
+  right: 28px;
+  transform: none;
+  padding: 3px 9px;
+  gap: 12px;
+  font-size: 10px;
+}
+.expedition-bar #coop { border-left: 1px solid var(--line); padding-left: 12px; }
+.expedition-hint { top: 82px; padding: 5px 10px; background: #eeeadbc9; }
+#ui:has(#discovery:not([hidden])) .expedition-hint { visibility: hidden; }
+.discovery {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  translate: -50% 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 300px;
+  max-width: calc(100vw - 36px);
+  padding: 14px 32px 14px 14px;
+  background: var(--surface-dark);
+  color: #f2ecd5;
+  box-shadow: var(--shadow-floating);
+  border-radius: 8px;
+  pointer-events: auto;
+  animation: discovery-arrive 350ms ease-out both;
+}
+.discovery-art {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  background: #dbc99713;
+  border-radius: 5px;
+  color: #dec186;
+}
+.discovery-art svg { width: 23px; height: 23px; }
+.discovery-art img { width: 46px; height: 46px; object-fit: contain; }
+.discovery small { display: block; font-size: 9px; color: #dbc591; line-height: 1.5; }
+.discovery strong { display: block; margin-top: 2px; font-size: 13px; font-weight: 550; }
+.discovery p { margin-top: 4px; color: #b0bea6; font-size: 9px; }
+#dismiss-discovery { position: absolute; top: 4px; right: 4px; width: 28px; height: 28px; color: #b4c0aa; }
+#dismiss-discovery svg { width: 13px; height: 13px; }
+.discovery.leaving { animation: discovery-leave 180ms ease-out both; }
+.resource.is-discovered { animation: supply-arrive 600ms ease-out both; }
+.build-card.is-discovered { animation: blueprint-arrive 450ms ease-out both; }
+.new-blueprint { position: absolute; top: 6px; right: 6px; font-size: 6px; letter-spacing: .7px; color: #e9cf90; }
+.build-dock { width: 600px; min-width: 450px; }
+.build-items { justify-content: flex-start; min-height: 110px; }
+.build-card { height: 94px; }
+.build-card img { height: 58px; }
+@keyframes supply-arrive {
+  from { opacity: 0; transform: translateY(-4px); background-color: #d8bc7830; }
+  45% { opacity: 1; transform: translateY(0); background-color: #d8bc781c; }
+  to { background-color: transparent; }
+}
+@keyframes blueprint-arrive {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes discovery-arrive {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes discovery-leave {
+  to { opacity: 0; transform: translateY(-4px); }
+}
+@media (max-width: 1100px) {
+  .inventory-hud .resource { padding-inline: 8px; }
+  .inventory-hud .resource small { display: none; }
+  .build-dock { width: 600px; min-width: 0; }
+}
+@media (max-width: 800px) {
+  .inventory-hud { order: 3; margin: 8px auto 0; max-width: 100%; }
+  .inventory-hud .resources { max-width: none; }
+  .expedition-bar { top: 113px; right: 18px; left: auto; transform: none; }
+  .expedition-hint { top: 157px; right: 18px; left: auto; transform: none; max-width: calc(100vw - 250px); }
+  .build-card { height: 88px; }
+  .build-card img { height: 54px; }
+}
+@media (max-height: 700px) {
+  .build-card { height: 84px; }
+  .build-card img { height: 50px; }
+  .build-items { min-height: 96px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .discovery, .resource.is-discovered, .build-card.is-discovered { animation: none; }
+}

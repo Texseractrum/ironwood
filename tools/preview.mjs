@@ -1,0 +1,11 @@
+import { chromium } from '@playwright/test';
+const browser=await chromium.launch({headless:true,args:process.platform==='darwin'?['--use-angle=metal']:[]});
+const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});
+page.on('pageerror',e=>console.log('PAGE ERROR',e.message));
+page.on('console',m=>{if(m.type()==='error'||m.type()==='warning')console.log(m.type(),m.text());});
+await page.goto('http://localhost:5173');
+await page.waitForFunction(()=>!!window.ironwood,{timeout:30000});
+await page.waitForTimeout(8000);
+await page.screenshot({path:'.context/ironwood.png'});
+console.log(await page.evaluate(()=>window.ironwood.diagnostics()));
+await browser.close();

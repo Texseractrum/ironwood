@@ -1,0 +1,5 @@
+# Copy to .dev.vars and fill in your X app's OAuth 2.0 credentials.
+# Keep .dev.vars private. Never use VITE_ variables for these values.
+X_CLIENT_ID=""
+X_CLIENT_SECRET=""
+X_REDIRECT_URI="http://localhost:8787/api/auth/x/callback"
